@@ -1739,7 +1739,7 @@ var WebsocketLoader = function (_EventHandler) {
     key: 'receiveSocketMessage',
     value: function receiveSocketMessage(event) {
       // console.log(event); // [debug]
-
+      // console.log(event.ts);
       var byteCharacters = atob(event.data);
       const byteNumbers = new Array(byteCharacters.length);
       for (let i = 0; i < byteCharacters.length; i++) {

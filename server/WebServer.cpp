@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <ctime>
+
 #include "b64.h"
 #include "WebServer.h"
 
@@ -90,6 +91,7 @@ void WebServer::onMessageReceived(int clientSocket, const char* msg, int length)
 
 		errorCode = 200;
 		oss << "HTTP/1.1 " << errorCode << " OK\r\n";
+		oss << "ts: " << std::time(0) << "\r\n";
 		oss << "Cache-Control: no-cache, private\r\n";
 		oss << "Content-Type: "<< contentType << "\r\n";
 		oss << "data: "<< enc; 
@@ -126,6 +128,7 @@ void WebServer::onTimeOut() {
 
 	std::ostringstream oss;
 	oss << "HTTP/1.1 200 OK\r\n";
+	oss << "ts: " << std::time(0) << "\r\n";
 	oss << "Cache-Control: no-cache, private\r\n";
 	oss << "Content-Type: text/event-stream\r\n";
 	oss << "data: " << enc;	
